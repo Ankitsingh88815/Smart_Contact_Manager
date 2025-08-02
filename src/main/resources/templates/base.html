@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  th:fragment="parent(content, title, script)"
+  xmlns:th="http://www.thymeleaf.org"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${title}">Base Content</title>
+    
+    <!-- Tailwind CSS (your build or CDN) -->
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}" />
+
+    <!-- Flowbite + FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+  </head>
+  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-white transition-colors duration-300">
+
+    <!-- Navbar -->
+    <div data-th-replace="~{navbar :: navbar}"></div>
+
+    <!-- Main content -->
+    <div class="p-4">
+      <section data-th-replace="${content}"></section>
+    </div>
+
+    <!-- Your theme toggle logic -->
+    <script data-th-src="@{'/js/script.js'}" defer></script>
+    <th:block data-th-replace="${script}"></th:block>
+  </body>
+</html>
