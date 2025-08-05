@@ -5,8 +5,78 @@
 </head>
 <body>
 	<div id="content">
-		<h1>Welcome to login page</h1>
-  </div>
+		<div class="grid grid-cols-12">
+        <div class="col-span-4 md:col-span-2 lg:col-span-3 xl:col-span-4"></div>
+        <div class="col-span-12 md:col-span-4 lg:col-span-4 xl:col-span-4">
+          <div
+            class="block p-6 border-t-8 border-blue-600 bg-white rounded-xl shadow hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:border-blue-500"
+          >
+            <!-- Content goes here -->
+          <div data-th-replace="~{message:: messagebox}"></div>
+            <h5
+              class="flex justify-center mb-2 text-2xl font-bold tracking-tight bg-blue-600 dark:bg-blue-500 text-white py-3 rounded-t-lg shadow"
+            >
+              login here
+            </h5>
+
+            <form
+              data-th-action="@{'/authenticate'}"
+              method="post"
+              class="mt-5"
+            >
+              
+              <!-- for email -->
+              <div class="mb-3">
+                <label
+                  for="email"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Your email</label
+                >
+                <input
+				name="email"
+                  type="email"
+                  id="email"
+                  
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="email@gmail.com"
+                  required
+                />
+                <!-- <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-red-600 text-sm px-1 py-2 font-thin mt-1"></p> -->
+              </div>
+              <!-- for password -->
+              <div class="mb-3">
+                <label
+                  for="password"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >password</label
+                >
+
+                <input
+				name="password"
+                  type="password"
+                  id="password"
+                  
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder=""
+                  required
+                />
+                <!-- <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-red-600 text-sm px-1 py-2 font-thin mt-1"></p> -->
+              </div>
+                <!-- form inputs here -->
+                <!-- Signup Button -->
+                <button
+                  type="submit"
+                  class="px-5 py-2 text-white bg-blue-600 hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 font-semibold rounded-lg shadow-md transition duration-300 ease-in-out"
+                >
+                  <i class="login"></i> login
+                </button>
+              
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+  	</div>
 	<script>
 		console.log("login Page")
 	</script>

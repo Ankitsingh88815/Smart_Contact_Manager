@@ -7,9 +7,11 @@ import java.util.UUID;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.scm.scm20.Entities.UserClient;
+import com.scm.scm20.helper.AppConstants;
 import com.scm.scm20.helper.ResouceNotFoundException;
 import com.scm.scm20.repositories.UserRepo;
 import com.scm.scm20.services.UserService;
@@ -20,6 +22,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepo userRepo;
 
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+ 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
@@ -31,7 +36,15 @@ public class UserServiceImpl implements UserService {
         if (userClient.getUserId() == null || userClient.getUserId().isBlank()) {
             userClient.setUserId(UUID.randomUUID().toString());
         }
+        
+        System.out.println("Password after encoding: " + userClient.getPassword());
+        // encode the password before saving
+        userClient.setPassword(passwordEncoder.encode(userClient.getPassword()));
 
+        userClient.setRoleList(List.of(AppConstants.ROLE_USER)); // Default role for new users
+        // encode the password
+        System.out.println("Password before encoding: " + userClient.getPassword());
+        logger.info(userClient.getProviders().toString());
         return userRepo.save(userClient);
     }
 
@@ -41,7 +54,7 @@ public class UserServiceImpl implements UserService {
     // String userId = UUID.randomUUID().toString();
     // userclient.setUserId(userId);
     // }
-
+    
     // return userRepo.save(userclient);
     // }
 

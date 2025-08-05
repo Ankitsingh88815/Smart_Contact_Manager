@@ -1,8 +1,9 @@
 <div
-  data-th-if="${session.message}"
-  data-th-object="${session.message}"
+  th:if="${message}"
+  th:object="${message}"
   data-th-fragment="messagebox"
-  class="flex items-center p-4 mb-4 text-sm text-green-800 border border-blue-300 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400 dark:border-blue-800"
+  data-th-classappend="'text-'+*{type}+'-800 border border-'+*{type}+'-300 rounded-lg dark:bg-gray-800 dark:text-'+*{type}+'-400 dark:border-'+*{type}+'-800 bg-white' "
+  class="flex items-center p-4 mb-4 text-sm "
   role="alert"
 >
   <svg
@@ -20,5 +21,5 @@
   <div>
     <span data-th-text="*{content}"></span>
   </div>
-  <th:block data:text="${@sessionHelper.removeMessage()}"></th:block>
+  
 </div>

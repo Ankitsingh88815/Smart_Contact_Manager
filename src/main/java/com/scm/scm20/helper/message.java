@@ -10,7 +10,7 @@ import lombok.Setter;
 @Setter
 @NoargsConstructor
 @AllArgsConstructor
-public class message {
+public class Message {
     private String content;
     @Builder.Default
     private MessageTypes type = MessageTypes.blue;
